@@ -11,7 +11,7 @@ namespace mvc.Controllers
 
         public ActionResult Detailed()
         {
-            return View();
+            return View("Detailed");
         }
 
         public string Confirmed()
