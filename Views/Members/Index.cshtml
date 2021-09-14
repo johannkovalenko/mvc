@@ -1,18 +1,19 @@
-﻿@{
+﻿@model List<mvc.Models.Member>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <table>
-        <tr>
-            <td>Mieszko</td><td>Jan</td><td>Kovalenko</td>
-        </tr>
-        <tr>
-            <td>Karolina</td><td>Agnieszka</td><td>Kovalenko</td>
-        </tr>
-        <tr>
-            <td>Johann</td><td></td><td>Kovalenko</td>
-        </tr>
+        @foreach (var item in Model) 
+        {
+            <tr>
+                <td>@item.firstName</td>
+                <td>@item.middleName</td>
+                <td>@item.lastName</td>
+            </tr>
+        }
     </table>
 
     <a href="Members/Detailed">Show detailed data</a><br><br>
