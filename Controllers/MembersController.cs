@@ -7,9 +7,9 @@ namespace mvc.Controllers
     {
         private List<mvc.Models.Member> members = new List<mvc.Models.Member>
         { 
-            new mvc.Models.Member("Mieszko", "Jan", "Kovalenko", 123.45),
-            new mvc.Models.Member("Karolina", "Agnieszka", "Kovalenko", 234.56),
-            new mvc.Models.Member("Johann", "", "Kovalenko", 345.67)
+            new mvc.Models.Member {firstName="Mieszko", middleName="Jan", lastName="Kovalenko"},
+            new mvc.Models.Member {firstName="Karolina", middleName="Agnieszka", lastName="Kovalenko"},
+            new mvc.Models.Member {firstName="Johann", middleName="", lastName="Kovalenko"},
         };
 
         public ActionResult Index()
@@ -22,9 +22,10 @@ namespace mvc.Controllers
             return View("Detailed");
         }
 
-        public string Confirmed()
+        public string Confirmed(mvc.Models.Member member)
         {
-            return "The data was submitted";
+            return "The following data was received: " + member.firstName 
+            + " " + member.middleName + " " + member.lastName;
         }
     }
 }
