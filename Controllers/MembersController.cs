@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace mvc.Controllers
 {
     public class MembersController : Controller
     {
+        private MvcMembersContext context = new MvcMembersContext();
+
         public ActionResult Index()
         {
-            return View(Data.members);
+            return View(context.members.ToList());
         }
 
         public ActionResult Detailed()
@@ -15,10 +19,11 @@ namespace mvc.Controllers
         }
 
         public ActionResult Confirmed(mvc.Models.Member member)
-        {
-            Data.members.Add(member);
+        {   
+            context.members.Add(member);
+            context.SaveChanges();
 
-            return View("Index", Data.members);
+            return View("Index", context.members.ToList());
         }
     }
 }

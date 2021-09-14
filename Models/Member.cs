@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace mvc.Models
 {
     public class Member
     {
-        public string firstName     { get; set; }
-        public string middleName    { get; set; }
-        public string lastName      { get; set; }
+        [Key] 
+        public int      id          { get; set; } 
+        public string   firstName   { get; set; }
+        public string   middleName  { get; set; }
+        public string   lastName    { get; set; }
     }
 }
