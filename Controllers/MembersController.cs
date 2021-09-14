@@ -25,5 +25,11 @@ namespace mvc.Controllers
 
             return View("Index", context.members.ToList());
         }
+
+        public ActionResult Filtered(string filter)
+        {
+            return View("Index", context.members.Where(b => b.lastName.Contains(filter)).ToList());
+
+        }
     }
 }
