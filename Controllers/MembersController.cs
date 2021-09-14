@@ -13,5 +13,10 @@ namespace mvc.Controllers
         {
             return View();
         }
+
+        public string Confirmed()
+        {
+            return "The data was submitted";
+        }
     }
 }
