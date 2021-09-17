@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace mvc.Controllers
 {
-    public class MembersController : Controller
+    public class Members : Controller
     {
         private MvcMembersContext context = new MvcMembersContext();
 

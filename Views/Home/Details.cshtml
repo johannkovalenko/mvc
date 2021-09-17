@@ -1,7 +1,9 @@
-﻿@model List<Models.Company>
+﻿@model Models.Data
 @{
     ViewData["Title"] = "Home Page";
 }
+
+<h1>@Model.companies[@Model.id].name</h1>
 
 <table>
     <tr>
@@ -14,11 +16,11 @@
         <th>Chair</th>
         <th>UBO</th>
     </tr>
-    @foreach (Models.Company company in Model) 
+    @foreach (var company in Model.companies) 
     {
         <tr>
             @{ 
-                string link = "../Home/Details?id=" + @company.id; 
+                var link = "../Home/Details?id=" + @company.id; 
             }
 
             <td><a href="@link">@company.name</td>
@@ -32,3 +34,4 @@
         </tr>
     }
 </table>
+<a href="..">Back to list</a>
