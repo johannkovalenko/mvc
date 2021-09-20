@@ -61,6 +61,8 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color:cadetblue;
+  /* background-image: url("../../Views/Shared/tlo1.jpg"); */
 }
 .footer {
   position: absolute;
@@ -76,4 +78,9 @@ body {
 td {
   border: 1pt solid black;
   background-color:aqua;
+}
+
+th {
+  border: 1pt solid black;
+  background-color:rgb(221, 171, 214);
 }

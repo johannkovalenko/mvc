@@ -1,37 +1,93 @@
-﻿@model Models.Data
+﻿@model List<Models.Query2>
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<h1>@Model.companies[@Model.id].name</h1>
+@if(Model.Count == 0)
+{
+    <h3>No results</h3>
+}
+else
+{
+    string prefix = "Właścicielami firmy ";
+    string postfix = " są:";
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Legal Form</th>
-        <th>Is Physical Person</th>
-        <th>Headquarters</th>
-        <th></th>
-        <th>Branch</th>
-        <th>Chair</th>
-        <th>UBO</th>
-    </tr>
-    @foreach (var company in Model.companies) 
+    @if (Model.Count == 1)
     {
-        <tr>
-            @{ 
-                var link = "../Home/Details?id=" + @company.id; 
-            }
-
-            <td><a href="@link">@company.name</td>
-            <td>@company.legalForm</td>
-            <td>@company.isPhysicalPerson</td>
-            <td>@company.headquarters</td>
-            <td>@company.headquartersCountry</td>
-            <td>@company.branch</td>
-            <td>@company.chair</td>
-            <td>@company.ubo</td>
-        </tr>
+        prefix = "Właścicielem firmy ";
+        postfix = " jest:";
     }
-</table>
+
+    string companyName = @Model[0].companyName;
+
+    <h3>@prefix@companyName@postfix</h3>
+    <table>
+        <tr>
+            <th>Procent</th>
+            <th>Właściciel</th>
+            <th>Adres</th>
+            <th>Kapitał zakładowy</th>
+            <th>Branża</th>
+            <th>Prezes zarządu</th>
+            <th>Beneficjent ostateczny</th>
+            <th>Źródła</th>
+        </tr>
+        @foreach (Models.Query2 item in Model) 
+        {
+            <tr>
+                @{ 
+                    string linkOwner = "../Home/Details?id=" + @item.ownerId;    
+                } 
+
+                @if (@item.percent == 0)
+                {
+                    <td>-</td>
+                }
+                else
+                {
+                    <td>@item.percent%</td>
+                }
+
+                <td>
+                    @if (!@item.confirmed)
+                    {   <b>UNCERTAIN </b>   }
+
+                    <a href="@linkOwner">@item.ownerName @item.legalForm</a>
+                    @if(@item.label != "" && @item.label != null)
+                    {    @item.label    }
+
+                    @if(@item.physical)
+                    {    <i>Osoba Fizyczna</i>  }
+                </td>
+
+                <td>@item.address</td>
+                <td>@item.capital.ToString("#,#") @item.currency</td>
+                <td>@item.branch</td>
+                <td>@item.chair</td>
+                <td>@item.ubo</td>
+                <td>
+                    @if (@item.sourceChair != "" && @item.sourceChair != null)
+                    {
+                        string[] split = item.sourceChair.Split(';');
+
+                        @for (int i=0; i<split.Length; i++)
+                        {
+                            <a href="@split[i]">[@i]</a>
+                        } 
+                    }
+                    @if (@item.sourceOwner != "" && @item.sourceOwner != null)
+                    {
+                        string[] split = item.sourceOwner.Split(';');
+
+                        @for (int i=0; i<split.Length; i++)
+                        {
+                            <a href="@split[i]">[@i]</a>
+                        } 
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+
 <a href="..">Back to list</a>
