@@ -16,8 +16,9 @@ namespace Controllers
 
         public ActionResult Index()
         {
-            var set = context.companies.ToList();
-            return View(set.ToList());
+            List<Models.Company> list = context.companies.ToList();
+            list.Reverse();
+            return View(list);
         }
 
         public ActionResult AddRecord(Models.Company company)

@@ -12,5 +12,6 @@ namespace Contexts
 
         public DbSet<Models.Company> companies { get; set; }
         public DbSet<Models.Owner> owners { get; set; }
+        public DbSet<Models.Capital> capitals { get; set; }
     }
 }

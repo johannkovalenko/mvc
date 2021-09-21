@@ -1,0 +1,10 @@
+@model List<Models.Capital>
+
+<table>
+    <tr><th>Country</th><th>Capital</th></tr>
+
+    @foreach (Models.Capital item in Model)
+    {
+        <tr><td>@item.country</td><td>@item.capital</td></tr>
+    }   
+</table>
