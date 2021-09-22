@@ -2,44 +2,9 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<table>
-    <tr><th>Dodaj firmę</th><th>Połącz firmy</th></tr>
-    <tr>
-        <td>
-            <form action="../Home/AddRecord" method="get">          
-                <table>
-                    <tr><td>Name:        </td><td><input type="text" name="name" id="name">             </td></tr>        
-                    <tr><td>Legal Form:  </td><td><input type="text" name="legalForm" id="legalForm">   </td></tr>   
-                    <tr><td>Label:       </td><td><input type="text" name="label" id="label">           </td></tr>
-                    <tr><td>IsPerson:    </td><td><input type="text" name="physical" id="physical">     </td></tr>
-                    <tr><td>address:          </td><td><input type="text" name="address" id="address">                 </td></tr>
-                    <tr><td>Branch:      </td><td><input type="text" name="branch" id="branch">         </td></tr>
-                    <tr><td>Chair:       </td><td><input type="text" name="chair" id="chair">           </td></tr>
-                    <tr><td>Source:      </td><td><input type="text" name="sourceChair" id="sourceChair"></td></tr>
-                    <tr><td>UBO:         </td><td><input type="text" name="ubo" id="ubo">               </td></tr>
-                    <tr><td>Kapitał zakładowy:      </td><td><input type="text" name="capital" id="capital"></td></tr>
-                    <tr><td>Waluta:         </td><td><input type="text" name="currency" id="currency">               </td></tr>
-                                
-                </table>
-                <input type="submit" value="Add" onsubmit="return confirm('Are you sure?');">
-            </form>
-        </td>
-        <td>
-            <form action="../Home/LinkRecord" method="get">          
-                <table>
-                    <tr><td>Company ID:     </td><td><input type="text" name="companyId" id="companyId">        </td></tr>
-                    <tr><td>Owner ID:       </td><td><input type="text" name="ownerId" id="ownerId">            </td></tr>
-                    <tr><td>Percent:        </td><td><input type="text" name="percent" id="percent">            </td></tr>          
-                    <tr><td>Confirmed:      </td><td><input type="text" name="confirmed" id="confirmed">        </td></tr>
-                    <tr><td>Source Owner:   </td><td><input type="text" name="sourceOwner" id="sourceOwner">    </td></tr>
-                </table>
-                <input type="submit" value="Add" onsubmit="return confirm('Are you sure?');">
-            </form>
-        </td>
-    </tr>
-</table>
 
 <h1>Firmy i ich właściciele</h1>
+<h2><a href="../Home/Add">Dodaj</a></h2>
 <table>
     <tr>
         <th>Id</th>
@@ -50,6 +15,8 @@
         <th>Prezes zarządu</th>
         <th>Beneficjent ostateczny</th>
         <th>Źródła</th>
+        <th>Edytuj</th>
+        <th>Dodaj</th>
     </tr>
     @foreach (var company in Model) 
     {
@@ -84,18 +51,8 @@
                     } 
                 }
             </td>
+            <td><a href="../Home/ModifyRecord?id=@company.id">Edytuj</a></td>
+            <td><a href="../Home/Connect?id=@company.id">Dodaj</a></td>
         </tr>
     }
 </table>
-
-<br><br>
-
-<script type="text/javascript">
-
-    $("form").submit(function() {
-
-        return confirm('Are you sure?');
-
-    });
-
-</script>

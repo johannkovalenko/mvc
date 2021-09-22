@@ -21,12 +21,29 @@ namespace Controllers
             return View(list);
         }
 
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        public ActionResult Connect(int id)
+        {
+            return View("Connect", id);
+        }
+        
         public ActionResult AddRecord(Models.Company company)
         {
-            context.companies.Add(company);
-            context.SaveChanges();
+            Models.Company existingRecord = context.companies.Find(company.id);
 
-            return View("Index", context.companies.ToList());
+            if (existingRecord != null)
+                context.Entry(existingRecord).CurrentValues.SetValues(company);
+            else
+                context.companies.Add(company);
+            
+            context.SaveChanges();
+            List<Models.Company> list = context.companies.ToList();
+            list.Reverse();
+            return View("Index", list);
         }
 
         public ActionResult LinkRecord(Models.Owner owner)
@@ -34,7 +51,18 @@ namespace Controllers
             context.owners.Add(owner);
             context.SaveChanges();
 
-            return View("Index", context.companies.ToList());
+            List<Models.Company> list = context.companies.ToList();
+            list.Reverse();
+            return View("Index", list);
+        }
+
+        public ActionResult ModifyRecord(int id)
+        {
+            Models.Company record = context.companies.Find(id);
+
+            if (record != null)
+                return View("Modify", record);
+            else return View("Index", context.companies.ToList());
         }
 
         public ActionResult Details(int id)

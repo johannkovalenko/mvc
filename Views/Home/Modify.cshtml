@@ -1,0 +1,21 @@
+@model Models.Company
+<form action="../Home/AddRecord" method="get">          
+    <table>
+        <tr><td>Id:        </td><td><input type="text" value="@Model.id" name="id" id="id">             </td></tr>        
+        <tr><td>Name:        </td><td><input type="text" value="@Model.name" name="name" id="name">             </td></tr>        
+        <tr><td>Legal Form:  </td><td><input type="text" value="@Model.legalForm" name="legalForm" id="legalForm">   </td></tr>   
+        <tr><td>Label:       </td><td><input type="text" value="@Model.label" name="label" id="label">           </td></tr>
+        <tr><td>IsPerson:    </td><td><input type="text" value="@Model.physical" name="physical" id="physical">     </td></tr>
+        <tr><td>address:     </td><td><input type="text" value="@Model.address" name="address" id="address">                 </td></tr>
+        <tr><td>Branch:      </td><td><input type="text" value="@Model.branch" name="branch" id="branch">         </td></tr>
+        <tr><td>Chair:       </td><td><input type="text" value="@Model.chair" name="chair" id="chair">           </td></tr>
+        <tr><td>Source:      </td><td><input type="text" value="@Model.sourceChair" name="sourceChair" id="sourceChair"></td></tr>
+        <tr><td>UBO:         </td><td><input type="text" value="@Model.ubo" name="ubo" id="ubo">               </td></tr>
+        <tr><td>Kapitał zakładowy:</td><td><input type="text" value="@Model.capital" name="capital" id="capital"></td></tr>
+        <tr><td>Waluta:      </td><td><input type="text" value="@Model.currency" name="currency" id="currency">               </td></tr>
+                    
+    </table>
+    <input type="submit" value="Add" onsubmit="return confirm('Are you sure?');">
+</form>
+
+<a href="..">Back to list</a>

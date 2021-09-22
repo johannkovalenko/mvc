@@ -15,7 +15,7 @@ namespace Models
         public string   chair       { get; set; }
         public string   sourceChair { get; set; }
         public string   ubo         { get; set; }
-        public int      capital         { get; set; }
+        public long      capital         { get; set; }
         public string   currency    {get; set;}
     }
 }
