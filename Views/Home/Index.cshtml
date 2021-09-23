@@ -5,7 +5,7 @@
 
 <h1>Firmy i ich właściciele</h1>
 <h2><a href="../Home/Add">Dodaj</a></h2>
-<table>
+<table class=main>
     <tr>
         <th>Id</th>
         <th>Nazwa</th>
@@ -21,16 +21,9 @@
     @foreach (var company in Model) 
     {
         <tr>
-            @{
-                var link = "../Home/Details?id=" + @company.id; 
-            }
-            <td>@company.id</td>
+            <td><button class=owners data-id=@company.id>@company.id</button></td>
             <td>
-                <a href="@link">@company.name @company.legalForm</a>
-                @if(@company.label != "" && @company.label != null)
-                {    
-                     @company.label
-                }
+                @company.name @company.legalForm @company.label
                 @if(@company.physical)
                 {    <i>Osoba Fizyczna</i>  }
             </td>
@@ -51,8 +44,12 @@
                     } 
                 }
             </td>
-            <td><a href="../Home/ModifyRecord?id=@company.id">Edytuj</a></td>
-            <td><a href="../Home/Connect?id=@company.id">Dodaj</a></td>
+            <td><a asp-controller="Home" asp-action="ModifyRecord"  asp-route-id="@company.id">Edytuj   </a></td>
+            <td><a asp-controller="Home" asp-action="Connect"       asp-route-id="@company.id">Dodaj    </a></td>
+            
         </tr>
+        @*<tr><td colspan=5><p></p></td></tr>*@
     }
 </table>
+
+

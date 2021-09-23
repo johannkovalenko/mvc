@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading;
 
 namespace Controllers
 {
@@ -17,7 +19,7 @@ namespace Controllers
         public ActionResult Index()
         {
             List<Models.Company> list = context.companies.ToList();
-            list.Reverse();
+            //list.Reverse();
             return View(list);
         }
 
@@ -42,7 +44,7 @@ namespace Controllers
             
             context.SaveChanges();
             List<Models.Company> list = context.companies.ToList();
-            list.Reverse();
+            //list.Reverse();
             return View("Index", list);
         }
 
@@ -52,7 +54,7 @@ namespace Controllers
             context.SaveChanges();
 
             List<Models.Company> list = context.companies.ToList();
-            list.Reverse();
+            //list.Reverse();
             return View("Index", list);
         }
 
@@ -112,7 +114,7 @@ namespace Controllers
                 );
 
 
-            return View(query2.ToList());
+            return PartialView(query2.ToList());
         }
     }
 }

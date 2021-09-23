@@ -1,19 +1,21 @@
-<form action="../Home/AddRecord" method="get">          
+@model Models.Company
+
+<form asp-controller="Home" asp-action="AddRecord" method="get">          
     <table>
-        <tr><td>Name:        </td><td><input type="text" name="name" id="name">             </td></tr>        
-        <tr><td>Legal Form:  </td><td><input type="text" name="legalForm" id="legalForm">   </td></tr>   
-        <tr><td>Label:       </td><td><input type="text" name="label" id="label">           </td></tr>
-        <tr><td>IsPerson:    </td><td><input type="text" name="physical" id="physical">     </td></tr>
-        <tr><td>address:     </td><td><input type="text" name="address" id="address">                 </td></tr>
-        <tr><td>Branch:      </td><td><input type="text" name="branch" id="branch">         </td></tr>
-        <tr><td>Chair:       </td><td><input type="text" name="chair" id="chair">           </td></tr>
-        <tr><td>Source:      </td><td><input type="text" name="sourceChair" id="sourceChair"></td></tr>
-        <tr><td>UBO:         </td><td><input type="text" name="ubo" id="ubo">               </td></tr>
-        <tr><td>Kapitał zakładowy:      </td><td><input type="text" name="capital" id="capital"></td></tr>
-        <tr><td>Waluta:         </td><td><input type="text" name="currency" id="currency">               </td></tr>
-                    
+                                             <input asp-for="id" type="hidden">
+        <tr><td>Name:               </td><td><input asp-for="name">         </td></tr>        
+        <tr><td>Legal Form:         </td><td><input asp-for="legalForm">    </td></tr>   
+        <tr><td>Label:              </td><td><input asp-for="label">        </td></tr>
+        <tr><td>IsPerson:           </td><td><input asp-for="physical">     </td></tr>
+        <tr><td>address:            </td><td><input asp-for="address">      </td></tr>
+        <tr><td>Branch:             </td><td><input asp-for="branch">       </td></tr>
+        <tr><td>Chair:              </td><td><input asp-for="chair">        </td></tr>
+        <tr><td>Source:             </td><td><input asp-for="sourceChair">  </td></tr>
+        <tr><td>UBO:                </td><td><input asp-for="ubo">          </td></tr>
+        <tr><td>Kapitał zakładowy:  </td><td><input asp-for="capital">      </td></tr>
+        <tr><td>Waluta:             </td><td><input asp-for="currency">     </td></tr>            
     </table>
     <input type="submit" value="Add">
 </form>
 
-<a href="..">Back to list</a>
+<a asp-controller="Home" asp-action="Index">Back to list</a>

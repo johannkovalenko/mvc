@@ -3,9 +3,12 @@
 
 // Write your JavaScript code.
 
-// function ConfirmAdd() {
-//     if (confirm('Are you sure to delete?'))
-//         return true;
-//     else
-//         return false;
-// }
+$("button.owners").click(
+    function() {
+        var id = $(this).data('id');
+        $("div.interim").remove();
+        $.get( "Home/Details", {id:id}, function( data ) {
+            $('table.main > tbody > tr').eq(id).after(data);
+        });
+    }
+);
