@@ -43,9 +43,8 @@ namespace Controllers
                 context.companies.Add(company);
             
             context.SaveChanges();
-            List<Models.Company> list = context.companies.ToList();
-            //list.Reverse();
-            return View("Index", list);
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult LinkRecord(Models.Owner owner)
@@ -53,9 +52,21 @@ namespace Controllers
             context.owners.Add(owner);
             context.SaveChanges();
 
-            List<Models.Company> list = context.companies.ToList();
-            //list.Reverse();
-            return View("Index", list);
+            return RedirectToAction("Index");
+        }
+
+        public string LinkRecordTemp(int companyId, int ownerID)
+        {
+            var record = new Models.Owner();
+            record.companyId = companyId;
+            record.ownerID = ownerID;
+
+            Models.Company company = context.companies.Find(companyId);
+            Models.Company owner = context.companies.Find(ownerID);
+            context.owners.Add(record);
+            context.SaveChanges();
+
+            return company.name + " has now owner " + owner.name;
         }
 
         public ActionResult ModifyRecord(int id)
@@ -64,7 +75,7 @@ namespace Controllers
 
             if (record != null)
                 return View("Modify", record);
-            else return View("Index", context.companies.ToList());
+            else return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)

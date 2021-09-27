@@ -1,5 +1,5 @@
 @model Models.Company
-<form action="../Home/AddRecord" method="get">          
+<form asp-controller="Home" asp-action="AddRecord" method="get">          
     <table>
                                              <input value="@Model.id"           asp-for="id" type="hidden">      
         <tr><td>Name:               </td><td><input value="@Model.name"         asp-for="name">         </td></tr>        

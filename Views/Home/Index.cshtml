@@ -4,11 +4,12 @@
 }
 
 <h1>Firmy i ich właściciele</h1>
-<h2><a href="../Home/Add">Dodaj</a></h2>
+<h2><a asp-controller=Home asp-action=Add>Dodaj</a></h2>
+<button class=linkcompany>Add an owner to a company</button>
+
 <table class=main>
     <tr>
-        <th>Id</th>
-        <th>Nazwa</th>
+        <th class=first>Nazwa</th>
         <th>Adres</th>
         <th>Kapitał zakładowy</th>
         <th>Branża</th>
@@ -16,16 +17,25 @@
         <th>Beneficjent ostateczny</th>
         <th>Źródła</th>
         <th>Edytuj</th>
-        <th>Dodaj</th>
+        <th class=toggle>Dodaj</th>
+        <th class=toggle>Linked</th>
     </tr>
-    @foreach (var company in Model) 
+    @{ 
+        int counter = 0; 
+        string className = "";    
+    }
+
+    @foreach (Models.Company company in Model) 
     {
-        <tr>
-            <td><button class=owners data-id=@company.id>@company.id</button></td>
-            <td>
-                @company.name @company.legalForm @company.label
-                @if(@company.physical)
-                {    <i>Osoba Fizyczna</i>  }
+        className = counter++ % 2 == 0 ? "one" : "two";
+
+        <tr class=@className>
+            <td class=first>
+                <a href=# class=owners data-id=@company.id>
+                    @company.name @company.legalForm
+                </a> @company.label
+                    @if(@company.physical)
+                    {    <i>Osoba Fizyczna</i>  }
             </td>
             
             <td>@company.address</td>
@@ -44,12 +54,13 @@
                     } 
                 }
             </td>
-            <td><a asp-controller="Home" asp-action="ModifyRecord"  asp-route-id="@company.id">Edytuj   </a></td>
-            <td><a asp-controller="Home" asp-action="Connect"       asp-route-id="@company.id">Dodaj    </a></td>
-            
+            <td><a asp-controller=Home asp-action=ModifyRecord  asp-route-id=@company.id>Edytuj   </a></td>
+            <td class=toggle><button class=linkowner data-id=@company.id>Podlinkuj</button></td>
+            <td class=toggle><input type=radio id=@company.id name=tobelinked value=@company.id></td>
         </tr>
-        @*<tr><td colspan=5><p></p></td></tr>*@
     }
 </table>
+
+<button class=test>Test</button>
 
 

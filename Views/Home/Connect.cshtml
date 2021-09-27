@@ -1,6 +1,6 @@
 @model int
 
-<form action="../Home/LinkRecord" method="get">          
+<form asp-controller="Home" asp-action="LinkRecord" method="get">          
     <table>
         <tr><td>Company ID:     </td><td><input type="text" name="companyId" id="companyId" value="@Model">        </td></tr>
         <tr><td>Owner ID:       </td><td><input type="text" name="ownerId" id="ownerId">            </td></tr>

@@ -62,7 +62,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   background-color:cadetblue;
-  /* background-image: url("../../Views/Shared/tlo1.jpg"); */
+  background-image: url("../images/spikes.png");
 }
 .footer {
   position: absolute;
@@ -75,12 +75,33 @@ body {
 
 /* Customized by Johann Kovalenko */
 
-td {
-  border: 1pt solid black;
-  background-color:aqua;
+table.main {
+  border-collapse: separate;
+  border-spacing: 5px 15px;
+  /* background-image: url('../images/tlo1.jpg'); */
+}
+td, th {
+  border: 2px solid gray;
+  border-radius: 5px;
+  /* font-family:'Courier New', Courier, monospace; */
+}
+
+.first {
+  min-width: 500px;
+  font-size: larger;
+}
+
+tr.one {
+  background-color: rgb(255, 228, 196, 0.7);
+  /* background-image: linear-gradient( bisque, white); */
+}
+
+tr.two {
+  background-color: rgb(244, 164, 96, 0.7);
+  /* background-image: linear-gradient(sandybrown, white); */
 }
 
 th {
-  border: 1pt solid black;
-  background-color:rgb(221, 171, 214);
+  background-color: rgba(226, 71, 226, 0.7);
+  /* background-image: linear-gradient(to right, bisque, sandybrown); */
 }
